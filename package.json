@@ -1,0 +1,27 @@
+{
+  "name": "nodetest",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app/app.js",
+  "scripts": {
+    "start": "browserify app/app.js -d > dist/app.js",
+    "test": "BROWSERIFYSHIM_DIAGNOSTICS=1 browserify app/app.js -d > dist/app.js"
+  },
+  "author": "ajaegle",
+  "license": "ISC",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./bower_components/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  },
+  "devDependencies": {
+    "browserify": "^5.10.1",
+    "browserify-shim": "^3.7.0"
+  }
+}
