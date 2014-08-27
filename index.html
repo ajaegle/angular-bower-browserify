@@ -5,7 +5,12 @@
 </head>
 <body ng-app="aj">
   <div class="content">content goes here</div>
-  <div ng-controller="MainCtrl">{{ initialValue }}<div>
+  <div ng-controller="MainCtrl">
+    <div>Initial value: {{ initialValue }}</div>
+    <div>User: {{ user }}</div>
+    <div>Error: {{ err }}</div>
+
+  <div>
   <script type="text/javascript" src="dist/app.js"></script>
 </body>
 </html>
