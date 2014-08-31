@@ -9,19 +9,7 @@ var angular = require('angular');
 require('restangular');
 
 angular.module('aj', ['restangular']);
+
+var controllers = require('./controllers')
 angular.module('aj')
-  .controller('MainCtrl', ['$scope', 'Restangular', function($scope, Restangular) {
-    $scope.initialValue = 'asdf';
-    var User = Restangular.allUrl('users', 'https://api.github.com/users');
-    $scope.fetchUser = function (name) {
-      User.one(name).get().then(
-        function (data) {
-          $scope.user = data;
-        },
-        function (err) {
-          $scope.err = err;
-        }
-      )
-    };
-    $scope.fetchUser('ajaegle');
-  }]);
+  .controller('MainCtrl', ['$scope', 'Restangular', controllers.main]);
