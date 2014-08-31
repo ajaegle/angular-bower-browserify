@@ -1,17 +1,18 @@
-var MainCtrl = function($scope, Restangular) {
-  $scope.initialValue = 'asdf';
+var MainCtrl = function(Restangular) {
+  this.initialValue = 'asdf';
+  var vm = this;
   var User = Restangular.allUrl('users', 'https://api.github.com/users');
-  $scope.fetchUser = function (name) {
+  this.fetchUser = function (name) {
     User.one(name).get().then(
       function (data) {
-        $scope.user = data;
+        vm.user = data;
       },
       function (err) {
-        $scope.err = err;
+        vm.err = err;
       }
     )
   };
-  $scope.fetchUser('ajaegle');
+  this.fetchUser('ajaegle');
 }
 
 module.exports = {

@@ -12,4 +12,4 @@ angular.module('aj', ['restangular']);
 
 var controllers = require('./controllers')
 angular.module('aj')
-  .controller('MainCtrl', ['$scope', 'Restangular', controllers.main]);
+  .controller('MainCtrl', ['Restangular', controllers.main]);

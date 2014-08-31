@@ -5,12 +5,12 @@
 </head>
 <body ng-app="aj">
   <div class="content">content goes here</div>
-  <div ng-controller="MainCtrl">
-    <div>Initial value: {{ initialValue }}</div>
+  <div ng-controller="MainCtrl as main">
+    <div>Initial value: {{ main.initialValue }}</div>
     <div>
       <h2>Github</h2>
-      <div ng-show="user">User {{ user.login }} has id {{ user.id }}</div>
-      <div ng-show="err">Error getting user info: {{ err }}</div>
+      <div ng-show="main.user">User {{ main.user.login }} has id {{ main.user.id }}</div>
+      <div ng-show="main.err">Error getting user info: {{ main.err }}</div>
     </div>
   <div>
   <script type="text/javascript" src="dist/app.js"></script>
