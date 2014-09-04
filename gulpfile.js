@@ -1,6 +1,7 @@
 var browserify = require('browserify');
 var watchify = require('watchify');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
 var browserSync = require('browser-sync');
 //var browserifyshim = require('browserify-shim');
@@ -8,32 +9,21 @@ var browserSync = require('browser-sync');
 var watching = true;
 
 gulp.task('browserify', function() {
-  var bundler = browserify({
-    // watchify args
-    cache: {}, packageCache: {}, fullPaths: true,
+  var bundler = watchify(browserify('./app/app.js',
+      { debug: true }
+    ));
 
-    transform: ['browserify-shim'],
-    insertGlobals: true,
-    entries: ['./app/app.js'],
+  bundler
+    .on('update', rebundle)
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'));
 
-    debug: false
-  });
-
-  var bundle = function() {
-    //console.log(bundler);
-    return bundler
-    .bundle()
-    // gulp-compatible stream (output filename)
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./dist/'));
-  };
-
-  if(watching) {
-    bundler = watchify(bundler);
-    // Rebundle with watchify on changes.
-    bundler.on('update', bundle);
+  function rebundle() {
+    return bundler.bundle()
+      .pipe(source('app.js'))
+      .pipe(gulp.dest('./dist'));
   }
-  return bundle();
+
+  return rebundle();
 });
 
 gulp.task('html', function() {
