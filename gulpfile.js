@@ -18,11 +18,13 @@ gulp.task('browserify', function() {
       }
     );
 
+  b.plugin('minifyify', {map: 'bundle.map.json', output: __dirname + '/dist/bundle.map.json'});
+
   var w = watchify(b);
 
   var rebundle = function () {
     return w.bundle()
-      .pipe(source('app.js'))
+      .pipe(source('bundle.js'))
       .pipe(gulp.dest('./dist'));
   };
 
