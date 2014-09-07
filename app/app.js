@@ -1,10 +1,3 @@
-var printer = require('./printer');
-var $ = require('jquery');
-printer.print();
-printer.print();
-
-$( ".content" ).append( "<p>Content...</p>" );
-
 var angular = require('angular');
 require('restangular');
 

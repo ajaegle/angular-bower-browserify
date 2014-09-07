@@ -15,13 +15,11 @@
     ]
   },
   "browser": {
-    "jquery": "./bower_components/jquery/dist/jquery.js",
     "angular": "./bower_components/angular/angular.js",
     "restangular": "./bower_components/restangular/dist/restangular.js",
     "lodash": "./bower_components/lodash/dist/lodash.js"
   },
   "browserify-shim": {
-    "jquery": "$",
     "angular": "angular",
     "lodash": "_",
     "restangular": {
