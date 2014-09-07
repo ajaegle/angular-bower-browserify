@@ -9,20 +9,27 @@ var browserSync = require('browser-sync');
 var watching = true;
 
 gulp.task('browserify', function() {
-  var bundler = watchify(browserify('./app/app.js',
-      { debug: true }
-    ));
+  var b = browserify('./app/app.js',
+      {
+        debug: true,
+        cache: {},
+        packageCache: {},
+        fullPaths: true
+      }
+    );
 
-  bundler
-    .on('update', rebundle)
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'));
+  var w = watchify(b);
 
-  function rebundle() {
-    return bundler.bundle()
+  var rebundle = function () {
+    return w.bundle()
       .pipe(source('app.js'))
       .pipe(gulp.dest('./dist'));
-  }
+  };
 
+  w.on('update', rebundle);
+  w.on('error', function(e) {
+    gutil.log('Browserify Error', e);
+  });
   return rebundle();
 });
 
