@@ -15,6 +15,11 @@ var MainCtrl = function(Restangular) {
   this.fetchUser('ajaegle');
 }
 
+var TagsCtrl = function () {
+  this.values = [{text: "first"}, {text: "second"}];
+}
+
 module.exports = {
-  main: MainCtrl
+  main: MainCtrl,
+  tags: TagsCtrl
 }

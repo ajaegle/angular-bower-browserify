@@ -38,7 +38,12 @@ gulp.task('html', function() {
   .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('build', ['html', 'browserify']);
+gulp.task('css', function() {
+  return gulp.src(['./app/**/*.css', './bower_components/ng-tags-input/ng-tags-input.css'])
+  .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('build', ['html', 'css', 'browserify']);
 
 gulp.task('browserSync', ['build'], function() {
   browserSync({
@@ -54,4 +59,5 @@ gulp.task('browserSync', ['build'], function() {
 
 gulp.task('watch', ['browserSync'], function() {
   gulp.watch('./app/**/*.html', ['html']);
+  gulp.watch('./app/**/*.css', ['css']);
 });

@@ -17,14 +17,16 @@
   "browser": {
     "angular": "./bower_components/angular/angular.js",
     "restangular": "./bower_components/restangular/dist/restangular.js",
-    "lodash": "./bower_components/lodash/dist/lodash.js"
+    "lodash": "./bower_components/lodash/dist/lodash.js",
+    "ng-tags-input": "./bower_components/ng-tags-input/ng-tags-input.js"
   },
   "browserify-shim": {
     "angular": "angular",
     "lodash": "_",
     "restangular": {
       "depends": ["angular", "lodash"]
-    }
+    },
+    "ng-tags-input": {}
   },
   "devDependencies": {
     "browser-sync": "^1.3.6",
